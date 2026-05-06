@@ -1,38 +1,41 @@
 ﻿// main_SI.cpp
-
-#include <iomanip>
-#include <ios>
-#include <string>
-#include <iostream>
 #include <algorithm>
+#include <iomanip>
+
+#include <ios>
+
+#include <iostream>
 #include <stdexcept>
+#include <string>
 #include <vector>
 
-
 #include "Student_info.h"
-#include "median.h"
-#include "my_algs_T.h"
+#include "median.h" // 나중에 공유한 파일 사용
 
 using namespace std;
 
-int main() {
+int main(void) {
 	vector<Student_info> students;
 	Student_info record;
 	string::size_type maxlen = 0;
-	
+
 	// 데이터 읽고 저장하기
-	while (record.read(cin)) {
-		maxlen = max(maxlen, record.name().size());
+	while (record.read(cin)) { // Student_info의 멤버 함수 read()
+		maxlen = max(maxlen, record.getName().size());
 		students.push_back(record);
 	}
 
-	// 학생 정보를 알파벳 순으로 정렬
+	// 학생 기록 정렬하기
 	sort(students.begin(), students.end(), compare);
 
-	// 이름과 점수를 출력
-	for (vector<Student_info>::size_type i = 0; i != students.size(); ++i) {
-		cout << students[i].name()
-			<< string(maxlen + 1 - students[i].name().size(), ' ');
+	// 이름과 점수를 쓰기
+	for (vector<Student_info>::size_type i = 0;
+		i != students.size(); i++) {
+
+		cout << students[i].getName()
+			<< string(maxlen + 1
+				- students[i].getName().size(), ' ');
+
 		try {
 			double final_grade = students[i].grade();
 
@@ -41,7 +44,7 @@ int main() {
 				<< setprecision(prec) << endl;
 		}
 		catch (domain_error e) {
-			cout << e.what() << endl;
+			cout << e.what() << endl; // 예외 출력
 		}
 	}
 

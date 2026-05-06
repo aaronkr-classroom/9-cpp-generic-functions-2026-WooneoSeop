@@ -10,7 +10,7 @@ bool fgrade(const Student_info&);
 bool pgrade(const Student_info&);
 
 double grade(double, double, double);
-double grade(double, double, vector<double>&);
+double grade(double, double, const vector<double>&);
 double grade(const Student_info&);
 
 list<Student_info> extract_fails(list<Student_info>&);

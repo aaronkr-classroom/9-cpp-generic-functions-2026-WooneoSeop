@@ -8,6 +8,11 @@
 #include "median.h"
 #include "Student_info.h"
 
+// Student_info 계산 
+double grade(const Student_info& s) {
+    return grade(s.getMidterm(), s.getFinal(), s.getHw());
+}
+
 // 학생의 과락 여부를 결정하는 서술 함수
 bool fgrade(const Student_info& s) {
     return grade(s) < 60;
